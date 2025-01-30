@@ -1,19 +1,22 @@
 <script lang="ts" setup>
-import {useStepStore} from "@/store/step.ts";
+import { useStepStore } from '@/store/step.ts'
+import type{ Lang } from '@/helpers/interfaces.ts'
+import type { PropType } from 'vue'
+import {  defineProps } from 'vue'
 
 const props = defineProps({
   list: {
-    type: Array as Lang[],
-    default: [],
+    type: Array as PropType<Lang[]>,
+    default: () => [],
   },
-  formKey:{
-    type:String,
-    default:''
-  }
+  formKey: {
+    type: String,
+    default: '',
+  },
 })
 const stepStore = useStepStore()
 
-const change = (code) => {
+const change = (code:string) => {
   stepStore.$changeForm(props.formKey, code)
 }
 </script>

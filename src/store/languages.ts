@@ -1,11 +1,9 @@
 import { defineStore } from 'pinia'
 import { ref, computed } from 'vue'
+import axios from "axios";
+import type {Translate} from "@/helpers/interfaces.ts";
 
-interface Translate {
-  id: number
-  language: string
-  description: any
-}
+
 
 export const useLangStore = defineStore('lang', () => {
   const lang = ref('en')

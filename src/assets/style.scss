@@ -1,7 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import "fonts";
+@import "_fonts";
 :root {
   --font-family: "SFRounded", sans-serif;
   --second-family: "SF Pro Text", sans-serif;

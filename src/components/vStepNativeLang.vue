@@ -2,9 +2,10 @@
 import { useStepStore } from '@/store/step.ts'
 import VLangItem from '@/components/UI/vLangItem.vue'
 import VContinue from "@/components/UI/vContinue.vue";
+import type {Translate} from "@/helpers/interfaces.ts";
 
 const stepStore = useStepStore()
-const texts = stepStore.activeStepText.description
+const texts:Translate|any = stepStore.activeStepText?.description || {}
 
 </script>
 
