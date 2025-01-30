@@ -12,12 +12,12 @@ export default defineConfig({
     vue(),
     vueDevTools(),
   ],
-  server:{
-    allowedHosts: [
-      "c7b8-5-77-195-64.ngrok-free.app",
-      "ec9a-5-77-195-64.ngrok-free.app"
-    ]
-  },
+  // server:{
+  //   allowedHosts: [
+  //     "c7b8-5-77-195-64.ngrok-free.app",
+  //     "ec9a-5-77-195-64.ngrok-free.app"
+  //   ]
+  // },
   // server: {
   //   https: {
   //     key: fs.readFileSync('./ssl/key.pem'),
