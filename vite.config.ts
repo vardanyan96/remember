@@ -18,15 +18,6 @@ export default defineConfig({
   //     "ec9a-5-77-195-64.ngrok-free.app"
   //   ]
   // },
-  // server: {
-  //   https: {
-  //     key: fs.readFileSync('./ssl/key.pem'),
-  //     cert: fs.readFileSync('./ssl/cert.pem'),
-  //   },
-  //   host: 'localhost', // или другой хост
-  //   port: 5173, // можно изменить порт
-  // },
-
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url))
