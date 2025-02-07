@@ -13,8 +13,8 @@ export const useStepStore = defineStore('step', () => {
   } as any)
 
   onMounted(async () => {
-    step.value = +localStorage.getItem('step') || 1
-    const stepForm = JSON.parse(localStorage.getItem('stepForm')) || {}
+    step.value = Number(localStorage.getItem('step') ?? 1);
+    const stepForm = JSON.parse(localStorage.getItem('stepForm') || '') || {}
     Object.keys(stepForm).forEach(item=>{
       form[item] = stepForm[item]
     })

@@ -7,7 +7,7 @@ import type {Translate} from "@/helpers/interfaces.ts";
 
 export const useLangStore = defineStore('lang', () => {
   const lang = ref('en')
-  const translate = ref<Translate[]>([
+  const translate = ref<Translate[] | any>([
     {
       id: 1,
       language: 'en',
