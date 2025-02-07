@@ -6,5 +6,6 @@ export interface Lang {
 export interface Translate {
   id: number
   language: string
+  subtitle: string
   description:object
 }

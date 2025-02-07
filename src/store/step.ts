@@ -12,20 +12,34 @@ export const useStepStore = defineStore('step', () => {
     nativeLang: '',
   } as any)
 
-  onMounted(async () => await langStore.$get())
+  onMounted(async () => {
+    step.value = +localStorage.getItem('step') || 1
+    const stepForm = JSON.parse(localStorage.getItem('stepForm')) || {}
+    Object.keys(stepForm).forEach(item=>{
+      form[item] = stepForm[item]
+    })
+    await langStore.$get()
+    // form = localStorage.getItem('stepForm')
+  })
 
   const activeStepText = computed(() => {
     return _.find(langStore.translate, { id: step.value })
   })
 
-  const $changeForm = (key: string, value: any) => {
-    // @ts-ignore
+  const $changeForm = (key: string = 'learnLang', value: any) => {
     form[key] = value
   }
 
   const $continue = () =>{
     localStorage.setItem('stepForm', JSON.stringify(form))
     step.value++
+    localStorage.setItem('step', JSON.stringify(step.value))
   }
-  return { step, activeStepText,form, $changeForm , $continue}
+
+  const $prev = () =>{
+    localStorage.setItem('step', JSON.stringify(step.value))
+    step.value--
+  }
+
+  return { step, activeStepText,form, $changeForm , $continue, $prev}
 })

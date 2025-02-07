@@ -12,6 +12,9 @@ export default defineConfig({
     vue(),
     vueDevTools(),
   ],
+  server: {
+    port: 5134,
+  },
   // server:{
   //   allowedHosts: [
   //     "c7b8-5-77-195-64.ngrok-free.app",

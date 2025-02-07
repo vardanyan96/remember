@@ -10,21 +10,25 @@ const props = defineProps({
     default: () => [],
   },
   formKey: {
+    required: true,
+    type: String as PropType<'learnLang' | 'nativeLang'>,
+  },
+  activeLang: {
     type: String,
     default: '',
-  },
+  }
 })
 const stepStore = useStepStore()
 
 const change = (code:string) => {
-  stepStore.$changeForm(props.formKey, code)
+  stepStore.$changeForm(props?.formKey || 'learnLang', code)
 }
 </script>
 
 <template>
   <ul class="language-list">
     <li v-for="item in list" :key="item.image" class="language-item">
-      <input :id="`lang-${item.image}`" type="radio" name="lang" @change="change(item.image)" />
+      <input :id="`lang-${item.image}`" type="radio" :checked="activeLang === item.image" name="lang" @change="change(item.image)" />
       <label :for="`lang-${item.image}`" class="language-item-label">
         <img class="language-img" :src="`/img/flags/${item.image}.svg`" alt="" />
         <span class="language-text">{{ item.country }}</span>

@@ -19,6 +19,11 @@ body {
 }
 
 .page {
+  &-prev{
+    position: absolute;
+    top: 86px;
+    left: 10px;
+  }
   &-title {
     font-family: var(--font-family);
     font-weight: 900;
@@ -27,6 +32,15 @@ body {
     letter-spacing: -0.01em;
     text-align: center;
     color: #fff;
+     &-big{
+       font-family: var(--font-family);
+       font-weight: 900;
+       font-size: 32px;
+       line-height: 112%;
+       letter-spacing: -0.01em;
+       text-align: center;
+       color: #fff;
+     }
   }
 
   &-text {
@@ -42,7 +56,21 @@ body {
   }
 
   &-body {
-    padding-bottom: 130px;
+    padding-bottom: 115px;
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    &-wrapper{
+      flex:1;
+      display: flex;
+      flex-direction: column;
+      &-inner{
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+      }
+    }
   }
 
   &-button {
@@ -50,7 +78,7 @@ body {
     width: 100%;
     bottom: 0;
     left: 0;
-    height: 130px;
+    height: 115px;
     //background:  linear-gradient(180deg, rgba(91, 130, 255, 0) 0%, #5a81ff 74.5%, #5a81ff 100%);
     svg {
       position: absolute;
@@ -60,7 +88,7 @@ body {
     }
 
     &__inner {
-      height: 130px;
+      height: 115px;
       width: 100%;
       display: flex;
       align-items: flex-end;
@@ -138,7 +166,7 @@ body {
     font-weight: 400;
     font-size: 17px;
     line-height: 353%;
-    letter-spacing: 0.01em;
+    letter-spacing: 0.07em;
     color: #fff;
   }
 
@@ -153,4 +181,28 @@ body {
     top: 50%;
     transform: translateY(-50%);
   }
+}
+
+.desc{
+  font-family: var(--font-family);
+  font-weight: 400;
+  font-size: 17px;
+  line-height: 129%;
+  letter-spacing: 0.02em;
+  text-align: center;
+  color: #fff;
+}
+
+.info-page{
+  height: 100%;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  &__top{
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  &__bottom{}
 }

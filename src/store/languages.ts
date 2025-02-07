@@ -680,9 +680,8 @@ export const useLangStore = defineStore('lang', () => {
   ])
 
   const $get = async () => {
-    console.log(translate.value)
-    // const res = await axios.get(`/screen/${lang.value}`)
-    // console.log(res)
+    const res = await axios.get(`/screen/${lang.value}`)
+    translate.value = res.data
   }
 
   return { lang, $get, translate }

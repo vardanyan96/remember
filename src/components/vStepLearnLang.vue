@@ -24,9 +24,9 @@ const learnLang = computed(() => {
     <div class="wrapper">
       <div v-if="texts" class="pt-[124px]">
         <h1 class="page-title text-center max-w-[70%] m-auto mb-[31px]">{{ texts.title }}</h1>
-        <v-lang-item class="pb-[15px]" :list="learnLang.main" form-key="learnLang" />
+        <v-lang-item :active-lang="stepStore.form.learnLang" class="pb-[15px]"  :list="learnLang.main" form-key="learnLang" />
         <p class="page-text px-[15px] pb-[10px]">{{ texts?.other_texts?.separator }}</p>
-        <v-lang-item :list="learnLang.sea" form-key="learnLang" />
+        <v-lang-item :active-lang="stepStore.form.learnLang" :list="learnLang.sea" form-key="learnLang" />
       </div>
     </div>
   </div>
