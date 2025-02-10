@@ -16,6 +16,7 @@ const props = defineProps({
 })
 
 const stepStore = useStepStore()
+const emojis:string[] = stepStore.activeEmojis?.list || []
 
 const change = (code: string) => {
   stepStore.$changeForm(props?.imageKey || 'learnLang', code)
@@ -35,7 +36,7 @@ const change = (code: string) => {
         :checked="stepStore.form[imageKey] === item"
       />
       <label :for="`answers-${index}`" class="page-checkbox__item-label">
-        <img :src="`/img/${imageKey}/${index + 1}.webp`" alt="answers" />
+        <span class="page-checkbox__item-emoji">{{emojis[index]}}</span>
         <span class="page-checkbox__item-text">{{ item }}</span>
         <span class="page-checkbox__checked">
           <svg

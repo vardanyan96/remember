@@ -38,7 +38,7 @@ const texts: Translate | any = stepStore.activeStepText?.description || {}
         <v-skip @click.prevent="stepStore.$next" :text="texts.buttons.skip" />
         <div class="page-checkbox">
           <div v-if="!withoutImage" class="page-checkbox__image">
-            <img :src="`/img/${imageKey}/Bitmap.webp`" alt="page-checkbox" />
+            <img :src="`/img/${imageKey}/Bitmap.svg`" alt="page-checkbox" />
           </div>
           <div class="info-page__bottom">
             <h1 class="page-title text-center max-w-[85%] m-auto mb-[16px]">

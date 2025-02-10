@@ -26,6 +26,8 @@ const change = (code: string) => {
 const findElement = (item: string): number => {
   return stepStore.form[props.imageKey].findIndex((i:string) => i === item)
 }
+const emojis:string[] = stepStore.activeEmojis?.list || []
+
 </script>
 
 <template>
@@ -39,7 +41,8 @@ const findElement = (item: string): number => {
         :checked="findElement(item) !== -1"
       />
       <label :for="`answers-${index}`" class="page-checkbox__item-label">
-        <img :src="`/img/${imageKey}/${index + 1}.webp`" alt="answers" />
+        <span class="page-checkbox__item-emoji">{{emojis[index]}}</span>
+
         <span class="page-checkbox__item-text">{{ item }}</span>
         <span class="page-checkbox__checked">
           <svg

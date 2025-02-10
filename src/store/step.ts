@@ -3,6 +3,11 @@ import { computed, onMounted, reactive, ref } from 'vue'
 import { useLangStore } from '@/store/languages.ts'
 import _ from 'lodash'
 
+interface Emojis {
+  id: number
+  list: string[]
+}
+
 export const useStepStore = defineStore('step', () => {
   const step = ref<number>(1)
   const langStore = useLangStore()
@@ -17,6 +22,29 @@ export const useStepStore = defineStore('step', () => {
     'time',
     'level',
     'themes',
+  ]
+
+  const emojis: Emojis[] = [
+    {
+      id: 6,
+      list: ['✏️', '📄', '📜', '📘', '📚'],
+    },
+    {
+      id: 7,
+      list: ['🌑️', '🌓', '🌕', '🌖', '🌍'],
+    },
+    {
+      id: 8,
+      list: ['🏅️', '✌️', '🎯', '🌟', '🖐️','🔥','🏆'],
+    },
+    {
+      id: 9,
+      list: ['🚶️', '🏃️', '🏎️', '🚀'],
+    },
+    {
+      id: 10,
+      list: ['🔥️', '💬️', '🌴', '💄', '💪️','🏢','🍒','🎃','🍁','🚶','🚶','🚶','🚶','🚶','🚶','🚶','🚶','🚶','🚶','🚶','🚶','🚶','🚶','🚶','🚶','🚶','🚶','🚶','🚶','🚶','🚶','🚶','🚶',],
+    },
   ]
 
   const form = reactive({
@@ -44,6 +72,9 @@ export const useStepStore = defineStore('step', () => {
   const activeStepText = computed(() => {
     return _.find(langStore.translate, { id: step.value })
   })
+  const activeEmojis = computed(() => {
+    return _.find(emojis, { id: step.value })
+  })
 
   const $changeForm = (key: string = 'learnLang', value: any) => {
     form[key] = value
@@ -67,5 +98,16 @@ export const useStepStore = defineStore('step', () => {
     return activeKey[step.value - 1] || ''
   })
 
-  return { step, activeStepText, form, $changeForm, $continue, $prev, $next, $getActiveKey }
+  return {
+    step,
+    activeStepText,
+    activeEmojis,
+    emojis,
+    form,
+    $changeForm,
+    $continue,
+    $prev,
+    $next,
+    $getActiveKey,
+  }
 })
