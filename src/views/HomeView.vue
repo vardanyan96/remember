@@ -32,9 +32,9 @@ watch(
   <div class="step-container">
     <v-step-learn-lang v-if="stepStore.step === 1" />
     <v-step-native-lang v-if="stepStore.step === 2" />
-    <v-step-home v-if="stepStore.step === 3" image="/img/hi.png" />
-    <v-step-home v-if="stepStore.step === 4" image="/img/cards.png" />
-    <v-step-home v-if="stepStore.step === 5" image="/img/star.png" />
+    <v-step-home v-if="stepStore.step === 3" image="/img/hi.svg" />
+    <v-step-home v-if="stepStore.step === 4" image="/img/cards.svg" />
+    <v-step-home v-if="stepStore.step === 5" image="/img/star.svg" />
     <v-step-chek v-if="stepStore.step === 6" image-key="manyWords" />
     <v-step-chek v-if="stepStore.step === 7" image-key="month" />
     <v-step-chek v-if="stepStore.step === 8" image-key="time" />
