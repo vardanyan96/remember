@@ -6,18 +6,37 @@ import _ from 'lodash'
 export const useStepStore = defineStore('step', () => {
   const step = ref<number>(1)
   const langStore = useLangStore()
+  const activeKey = [
+    'learnLang',
+    'nativeLang',
+    '',
+    '',
+    '',
+    'manyWords',
+    'month',
+    'time',
+    'level',
+    'themes',
+  ]
 
   const form = reactive({
     learnLang: '',
     nativeLang: '',
+    manyWords: '',
+    month: '',
+    time: '',
+    level: '',
+    themes: [],
   } as any)
 
   onMounted(async () => {
-    step.value = Number(localStorage.getItem('step') ?? 1);
-    const stepForm = JSON.parse(localStorage.getItem('stepForm') || '') || {}
-    Object.keys(stepForm).forEach(item=>{
-      form[item] = stepForm[item]
-    })
+    if (localStorage.getItem('step')) {
+      step.value = Number(localStorage.getItem('step') ?? 1)
+      const stepForm = JSON.parse(localStorage.getItem('stepForm') || '') || {}
+      Object.keys(stepForm).forEach((item) => {
+        form[item] = stepForm[item]
+      })
+    }
     await langStore.$get()
     // form = localStorage.getItem('stepForm')
   })
@@ -30,16 +49,23 @@ export const useStepStore = defineStore('step', () => {
     form[key] = value
   }
 
-  const $continue = () =>{
+  const $continue = () => {
     localStorage.setItem('stepForm', JSON.stringify(form))
     step.value++
     localStorage.setItem('step', JSON.stringify(step.value))
   }
 
-  const $prev = () =>{
-    localStorage.setItem('step', JSON.stringify(step.value))
+  const $prev = () => {
     step.value--
+    localStorage.setItem('step', JSON.stringify(step.value))
   }
+  const $next = () => {
+    step.value++
+    localStorage.setItem('step', JSON.stringify(step.value))
+  }
+  const $getActiveKey = computed(() => {
+    return activeKey[step.value - 1] || ''
+  })
 
-  return { step, activeStepText,form, $changeForm , $continue, $prev}
+  return { step, activeStepText, form, $changeForm, $continue, $prev, $next, $getActiveKey }
 })

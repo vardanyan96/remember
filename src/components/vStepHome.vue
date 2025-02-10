@@ -18,7 +18,7 @@ const texts: Translate | any = stepStore.activeStepText?.description || {}
 <template>
   <div class="page-body">
     <div class="wrapper page-body-wrapper">
-      <div v-if="texts" class="pt-[124px] page-body-wrapper-inner">
+      <div v-if="texts" class="pt-[50px] page-body-wrapper-inner">
         <v-prev @click.prevent="stepStore.$prev" />
         <div class="info-page">
           <div class="info-page__top">
@@ -35,9 +35,5 @@ const texts: Translate | any = stepStore.activeStepText?.description || {}
     </div>
   </div>
 
-  <v-continue
-    :text="texts.buttons.continue"
-    @continue="stepStore.$continue()"
-    :disabled-btn="!stepStore.form.nativeLang"
-  />
+
 </template>
