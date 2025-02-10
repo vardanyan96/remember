@@ -27,10 +27,10 @@ const change = (code:string) => {
 
 <template>
   <ul class="language-list">
-    <li v-for="item in list" :key="item.image" class="language-item">
+    <li v-for="item in list" :key="item.image" :class="`language-item lang-${item.image}`">
       <input :id="`lang-${item.image}`" type="radio" :checked="activeLang === item.image" name="lang" @change="change(item.image)" />
       <label :for="`lang-${item.image}`" class="language-item-label">
-        <img class="language-img" :src="`/img/flags/${item.image}.svg`" alt="" />
+        <img class="language-img" :src="`/img/flags/${item.image}.svg`" :alt="`${item.image} flag`" />
         <span class="language-text">{{ item.country }}</span>
         <span class="language-checked">
           <svg

@@ -19,11 +19,55 @@ body {
 }
 
 .page {
-  &-prev{
+  &-prev {
     position: absolute;
-    top: 86px;
+    top: 16px;
     left: 10px;
   }
+
+  &-skip {
+    position: absolute;
+    top: 19px;
+    right: 16px;
+    font-family: var(--font-family);
+    font-weight: 700;
+    font-size: 15px;
+    line-height: 120%;
+    letter-spacing: 0.01em;
+    text-align: right;
+    color: #fff;
+    text-transform: capitalize;
+  }
+
+  &-header {
+    position: fixed;
+    padding-bottom: 40px;
+    z-index: 1;
+
+    .wrapper {
+      position: relative;
+      z-index: 3;
+    }
+
+    &:after {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: calc(100% - 40px);
+      @apply bg-primary;
+      top: 0;
+      left: 0;
+      z-index: 0;
+
+    }
+
+    &__svg {
+      width: 100%;
+      bottom: 5px;
+      position: absolute;
+    }
+  }
+
   &-title {
     font-family: var(--font-family);
     font-weight: 900;
@@ -32,15 +76,16 @@ body {
     letter-spacing: -0.01em;
     text-align: center;
     color: #fff;
-     &-big{
-       font-family: var(--font-family);
-       font-weight: 900;
-       font-size: 32px;
-       line-height: 112%;
-       letter-spacing: -0.01em;
-       text-align: center;
-       color: #fff;
-     }
+
+    &-big {
+      font-family: var(--font-family);
+      font-weight: 900;
+      font-size: 32px;
+      line-height: 112%;
+      letter-spacing: -0.01em;
+      text-align: center;
+      color: #fff;
+    }
   }
 
   &-text {
@@ -61,11 +106,13 @@ body {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-    &-wrapper{
-      flex:1;
+
+    &-wrapper {
+      flex: 1;
       display: flex;
       flex-direction: column;
-      &-inner{
+
+      &-inner {
         flex: 1;
         display: flex;
         flex-direction: column;
@@ -85,6 +132,10 @@ body {
       width: 100%;
       height: 100%;
 
+      rect,
+      path {
+        width: 100%;
+      }
     }
 
     &__inner {
@@ -95,6 +146,12 @@ body {
       padding-bottom: 36px;
       position: relative;
       z-index: 1;
+
+      .btn {
+        transition: all 0.3s ease-in-out;
+
+
+      }
     }
   }
 }
@@ -112,10 +169,16 @@ body {
     line-height: 129%;
     text-align: center;
     color: #5b82ff;
+    transition: transform 0.2s ease-in-out, opacity 0.3s ease-in-out;
 
-    &:disabled {
-      opacity: 0.5;
+    &:active {
+      transform: scale(0.95);
     }
+    &.disabled-class{
+      opacity: 0.5;
+      pointer-events: none;
+    }
+
   }
 }
 
@@ -151,6 +214,10 @@ body {
     &-label {
       display: flex;
       align-items: center;
+
+      &:active .language-text {
+        opacity: 0.3; /* Прозрачность 30% при нажатии */
+      }
     }
   }
 
@@ -168,12 +235,13 @@ body {
     line-height: 353%;
     letter-spacing: 0.07em;
     color: #fff;
+    transition: 0.3s;
+
   }
 
   &-checked {
     svg {
       opacity: 0;
-      transition: 0.3s;
     }
 
     position: absolute;
@@ -183,7 +251,7 @@ body {
   }
 }
 
-.desc{
+.desc {
   font-family: var(--font-family);
   font-weight: 400;
   font-size: 17px;
@@ -193,16 +261,91 @@ body {
   color: #fff;
 }
 
-.info-page{
+.info-page {
   height: 100%;
   flex: 1;
   display: flex;
   flex-direction: column;
-  &__top{
+
+  &__top {
     flex: 1;
     display: flex;
     justify-content: center;
     align-items: center;
   }
-  &__bottom{}
+
+  &__bottom {
+  }
+}
+
+.page-checkbox {
+  &__image {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 5px;
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    margin-top: 40px;
+  }
+
+  &__item {
+    margin-bottom: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 15px;
+    padding: 12px 20px;
+    font-family: var(--font-family);
+    font-weight: 700;
+    font-size: 17px;
+    line-height: 129%;
+    color: #fff;
+
+    input {
+      display: none;
+
+      &[type='checkbox'] + .page-checkbox__item-label .page-checkbox__checked {
+        border-radius: 6px;
+      }
+
+      &:checked + .page-checkbox__item-label .page-checkbox__checked {
+        background: #66DC7B;
+        border-color: #66DC7B;
+
+        svg {
+          opacity: 1;
+        }
+      }
+    }
+
+    &-label {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      width: 100%;
+    }
+
+    &-text {
+      flex: 1;
+    }
+  }
+
+  &__checked {
+    width: 24px;
+    height: 24px;
+    border: 2px solid rgba(#fff, 0.5);
+    border-radius: 50%;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    svg {
+      opacity: 0;
+      transition: all 0.3s;
+    }
+  }
 }
