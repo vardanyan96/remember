@@ -6,6 +6,12 @@ export interface Lang {
 export interface Translate {
   id: number
   language: string
-  subtitle: string
+  subtitle?: string
+  buttons:{
+    continue?:string
+    apple?:string
+    email?:string
+    term?:string
+  }
   description:object
 }

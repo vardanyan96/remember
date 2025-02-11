@@ -41,11 +41,11 @@ const texts: Translate | any = stepStore.activeStepText?.description || {}
                   fill="white"
                 />
               </svg>
-              <span>Continue with Apple</span>
+              <span> {{ texts.buttons?.apple}}</span>
             </button>
-            <span class="login-go pb-[25px]">Continue with e-mail</span>
+            <span class="login-go pb-[25px]"> {{ texts.buttons?.email }}</span>
             <span class="login-info pb-[17px]">
-              {{texts?.other_texts?.terms_title}} <b>Terms & conditions</b>
+              {{texts?.other_texts?.terms_title}} <b> {{ texts.buttons?.term }}</b>
             </span>
           </div>
         </div>
