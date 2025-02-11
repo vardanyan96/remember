@@ -5,6 +5,7 @@ import VStepNativeLang from '@/components/vStepNativeLang.vue'
 import VStepHome from '@/components/vStepHome.vue'
 import VStepChek from '@/components/vStepChek.vue'
 import VContinue from '@/components/UI/vContinue.vue'
+import VLogin from "@/components/vLogin.vue";
 import type{ Translate } from '@/helpers/interfaces.ts'
 import { computed, watch } from 'vue'
 
@@ -47,4 +48,7 @@ watch(
       v-if="stepStore.step <= 10"
     />
   </div>
+
+  <v-login v-if="stepStore.step === 11" />
+
 </template>

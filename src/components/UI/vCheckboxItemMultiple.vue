@@ -20,7 +20,6 @@ const change = (code: string) => {
   const findItem = findElement(code)
   if (findItem === -1) stepStore.form[props.imageKey].push(code)
   else stepStore.form[props.imageKey].splice(findItem, 1)
-  console.log(stepStore.form[props.imageKey])
 }
 
 const findElement = (item: string): number => {
