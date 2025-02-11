@@ -13,5 +13,6 @@ export interface Translate {
     email?:string
     term?:string
   }
+  answers?:string[]
   description:object
 }
