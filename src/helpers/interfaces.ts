@@ -12,6 +12,7 @@ export interface Translate {
     apple?:string
     email?:string
     term?:string
+    terms?:string
   }
   answers?:string[]
   description:object

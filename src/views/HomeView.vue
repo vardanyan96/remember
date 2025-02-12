@@ -8,6 +8,7 @@ import VContinue from '@/components/UI/vContinue.vue'
 import VLogin from "@/components/vLogin.vue";
 import type{ Translate } from '@/helpers/interfaces.ts'
 import { computed, watch } from 'vue'
+import VLoginForm from "@/components/vLoginForm.vue";
 
 const stepStore = useStepStore()
 const texts: Translate | any = stepStore.activeStepText?.description || {}
@@ -50,5 +51,6 @@ watch(
   </div>
 
   <v-login v-if="stepStore.step === 11" />
+  <v-login-form v-if="stepStore.step === 12" />
 
 </template>

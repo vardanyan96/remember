@@ -6,6 +6,15 @@ import {Translate} from "@/helpers/interfaces.ts";
 const stepStore = useStepStore()
 const texts: Translate | any = stepStore.activeStepText?.description || {}
 
+const CLIENT_ID = "your.bundle.id"; // Уникальный идентификатор твоего приложения
+const REDIRECT_URI = "https://your-backend.com/auth/apple/callback"; // Сюда Apple отправит код
+const STATE = "random_string"; // Используй UUID или хэш для безопасности
+const SCOPE = "name email";
+
+const handleAppleLogin = () => {
+  const url = `https://appleid.apple.com/auth/authorize?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=code&scope=${SCOPE}&state=${STATE}`;
+  window.location.href = url; // Открываем Apple OAuth
+};
 </script>
 
 <template>
@@ -26,7 +35,7 @@ const texts: Translate | any = stepStore.activeStepText?.description || {}
             </div>
           </div>
           <div class="info-page__bottom">
-            <button class="btn btn-black mb-[21px]">
+            <button @click.prevent="handleAppleLogin" class="btn btn-black mb-[21px]">
               <svg
                 width="15"
                 height="18"
@@ -43,7 +52,7 @@ const texts: Translate | any = stepStore.activeStepText?.description || {}
               </svg>
               <span> {{ texts.buttons?.apple}}</span>
             </button>
-            <span class="login-go pb-[25px]"> {{ texts.buttons?.email }}</span>
+            <span class="login-go pb-[25px]" @click.prevent="stepStore.$continue()"> {{ texts.buttons?.email }}</span>
             <span class="login-info pb-[17px]">
               {{texts?.other_texts?.terms_title}} <b> {{ texts.buttons?.term }}</b>
             </span>
