@@ -5,7 +5,7 @@ import { createPinia } from 'pinia'
 // @ts-ignore
 import App from './App.vue'
 import router from './router'
-axios.defaults.baseURL = 'https://api.rmmbr.io/public/';
+axios.defaults.baseURL = 'https://api.rmmbr.io/';
 const pinia = createPinia()
 const app = createApp(App)
 
