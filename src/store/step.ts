@@ -58,7 +58,7 @@ export const useStepStore = defineStore('step', () => {
   } as any)
 
   onMounted(async () => {
-    if (localStorage.getItem('step')) {
+    if (localStorage.getItem('step') && localStorage.getItem('stepForm')) {
       step.value = Number(localStorage.getItem('step') ?? 1)
       const stepForm = JSON.parse(localStorage.getItem('stepForm') || '') || {}
       Object.keys(stepForm).forEach((item) => {

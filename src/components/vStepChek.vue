@@ -44,6 +44,7 @@ const texts: Translate | any = stepStore.activeStepText?.description || {}
             <h1 class="page-title text-center max-w-[85%] m-auto mb-[16px]">
               {{ texts.title }}
             </h1>
+
             <v-checkbox-item v-if="!multiple" :image-key="imageKey" :answers="texts.answers" />
             <v-checkbox-item-multiple v-else :image-key="imageKey" :answers="texts.answers" />
           </div>

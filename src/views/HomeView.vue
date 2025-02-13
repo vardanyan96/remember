@@ -5,8 +5,12 @@ import VStepNativeLang from '@/components/vStepNativeLang.vue'
 import VStepHome from '@/components/vStepHome.vue'
 import VStepChek from '@/components/vStepChek.vue'
 import VContinue from '@/components/UI/vContinue.vue'
-import type{ Translate } from '@/helpers/interfaces.ts'
+import VLogin from '@/components/vLogin.vue'
+import type { Translate } from '@/helpers/interfaces.ts'
 import { computed, watch } from 'vue'
+import VLoginForm from '@/components/vLoginForm.vue'
+import VLoading from '@/components/vLoading.vue'
+import VStepTariff from '@/components/vStepTariff.vue'
 
 const stepStore = useStepStore()
 const texts: Translate | any = stepStore.activeStepText?.description || {}
@@ -47,4 +51,9 @@ watch(
       v-if="stepStore.step <= 10"
     />
   </div>
+
+  <v-login v-if="stepStore.step === 11" />
+  <v-login-form v-if="stepStore.step === 12" />
+  <v-loading v-if="stepStore.step === 13" />
+  <v-step-tariff v-if="stepStore.step === 14" />
 </template>

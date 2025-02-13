@@ -29,7 +29,7 @@ const props = defineProps({
       <div class="page-button__inner">
         <button
           @click.prevent="$emit('continue')"
-          class="btn btn-white w-full h-[50px] capitalize"
+          class="btn btn-white w-full capitalize"
           :class="{'disabled-class': disabledBtn}"
         >
           {{text}}
