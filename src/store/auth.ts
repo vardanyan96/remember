@@ -10,7 +10,7 @@ interface UserForm {
 
 export const useAuthStore = defineStore('auth', () => {
   const user = ref(null)
-  const errors = ref(null)
+  const errors = ref<any>(null)
   const loading = ref(false)
   const token = ref<any|null>(null)
   const stepStore = useStepStore()

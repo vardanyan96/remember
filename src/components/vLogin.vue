@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import VPrev from '@/components/UI/vPrev.vue'
 import { useStepStore } from '@/store/step.ts'
-import {Translate} from "@/helpers/interfaces.ts";
+import type {Translate} from "@/helpers/interfaces.ts";
 
 const stepStore = useStepStore()
 const texts: Translate | any = stepStore.activeStepText?.description || {}

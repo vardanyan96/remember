@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import 'vue3-carousel/dist/carousel.css'
 import { Carousel, Slide, Pagination } from 'vue3-carousel'
-import { Translate } from '@/helpers/interfaces.ts'
+import type { Translate } from '@/helpers/interfaces.ts'
 import { useStepStore } from '@/store/step.ts'
 import {useTariffStore} from "@/store/tariffs.ts";
 import {onMounted} from "vue";
@@ -16,7 +16,7 @@ onMounted(async () => {
 interface Tariff {
   number:number
   price:string
-  old_prise?:string
+  old_price?:string
 }
 const tariff =  [
   {
@@ -32,7 +32,6 @@ const tariff =  [
     number:0,
     old_price:'£83.99',
     price:'£66.99'
-
   }
 ] as Tariff[]
 </script>
@@ -68,7 +67,7 @@ const tariff =  [
             </svg>
           </div>
           <div class="price-item-text"> {{texts?.other_texts[`price${index + 1}_title`]}}</div>
-          <div v-if="item?.old_price" class="price-item-del-is">{{item?.old_price}}</div>
+          <div v-if="item.old_price" class="price-item-del-is">{{item?.old_price}}</div>
           <div class="price-item-is">{{item?.price}}</div>
         </li>
       </ul>

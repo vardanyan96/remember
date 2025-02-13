@@ -3,7 +3,7 @@ import { onMounted } from 'vue'
 import 'vue3-circle-progress/dist/circle-progress.css'
 import VCircleProgress from '@/components/UI/vCircleProgress.vue'
 import { useStepStore } from '@/store/step.ts'
-import { Translate } from '@/helpers/interfaces.ts'
+import type { Translate } from '@/helpers/interfaces.ts'
 
 const stepStore = useStepStore()
 const texts: Translate | any = stepStore.activeStepText?.description || {}
