@@ -9,7 +9,7 @@ const stepStore = useStepStore()
 const texts: Translate | any = stepStore.activeStepText?.description || {}
 onMounted(async () => {
   setTimeout(() =>{
-    // stepStore.$continue()
+    stepStore.$continue()
   },1000)
 })
 </script>

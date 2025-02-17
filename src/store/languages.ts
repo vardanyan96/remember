@@ -1,9 +1,8 @@
 import { defineStore } from 'pinia'
-import { ref, computed } from 'vue'
-import axios from "axios";
-import type {Translate} from "@/helpers/interfaces.ts";
-
-
+import { ref, onMounted } from 'vue'
+import axios from 'axios'
+import type { Translate } from '@/helpers/interfaces.ts'
+import { $url } from '@/helpers/url.ts'
 
 export const useLangStore = defineStore('lang', () => {
   const lang = ref('en')
@@ -680,9 +679,14 @@ export const useLangStore = defineStore('lang', () => {
   ])
 
   const $get = async () => {
-    const res = await axios.get(`/public/screen/${lang.value}`)
+    const res = await axios.get(`${$url.screen}/${lang.value}`)
     translate.value = res.data
   }
+
+  onMounted(() => {
+    const langCode = navigator.language.split('-')[0].toUpperCase()
+    lang.value = langCode === 'es' ? langCode : 'en'
+  })
 
   return { lang, $get, translate }
 })
