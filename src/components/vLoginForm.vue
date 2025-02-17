@@ -10,8 +10,8 @@ const authStore = useAuthStore()
 const texts: Translate | any = stepStore.activeStepText?.description || {}
 
 const form = reactive({
-  email: 'test23@gmail.com',
-  password: '12345678',
+  email: '',
+  password: '',
   confirm: true,
 })
 
