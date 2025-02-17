@@ -8,10 +8,20 @@ interface Emojis {
   list: string[]
 }
 
+interface Form {
+  learnLang: string
+  nativeLang: string
+  manyWords: string
+  month: string
+  time: string
+  level: string
+  themes: string[] | any
+}
+
 export const useStepStore = defineStore('step', () => {
-  const step = ref<number>(1)
   const langStore = useLangStore()
-  const activeKey = [
+  const step = ref<number>(1)
+  const activeKey: string[] = [
     'learnLang',
     'nativeLang',
     '',
@@ -35,7 +45,7 @@ export const useStepStore = defineStore('step', () => {
     },
     {
       id: 8,
-      list: ['🏅️', '✌️', '🎯', '🌟', '🖐️','🔥','🏆'],
+      list: ['🏅️', '✌️', '🎯', '🌟', '🖐️', '🔥', '🏆'],
     },
     {
       id: 9,
@@ -43,7 +53,40 @@ export const useStepStore = defineStore('step', () => {
     },
     {
       id: 10,
-      list: ['🔥️', '💬️', '🌴', '💄', '💪️','🏢','🍒','🎃','🍁','🚶','🚶','🚶','🚶','🚶','🚶','🚶','🚶','🚶','🚶','🚶','🚶','🚶','🚶','🚶','🚶','🚶','🚶','🚶','🚶','🚶','🚶','🚶','🚶',],
+      list: [
+        '🔥️',
+        '💬️',
+        '🌴',
+        '💄',
+        '💪️',
+        '🏢',
+        '🍒',
+        '🎃',
+        '🍁',
+        '🚶',
+        '🚶',
+        '🚶',
+        '🚶',
+        '🚶',
+        '🚶',
+        '🚶',
+        '🚶',
+        '🚶',
+        '🚶',
+        '🚶',
+        '🚶',
+        '🚶',
+        '🚶',
+        '🚶',
+        '🚶',
+        '🚶',
+        '🚶',
+        '🚶',
+        '🚶',
+        '🚶',
+        '🚶',
+        '🚶',
+      ],
     },
   ]
 
@@ -55,7 +98,7 @@ export const useStepStore = defineStore('step', () => {
     time: '',
     level: '',
     themes: [],
-  } as any)
+  } as Form | any)
 
   onMounted(async () => {
     if (localStorage.getItem('step') && localStorage.getItem('stepForm')) {
@@ -66,7 +109,6 @@ export const useStepStore = defineStore('step', () => {
       })
     }
     await langStore.$get()
-    // form = localStorage.getItem('stepForm')
   })
 
   const activeStepText = computed(() => {
@@ -80,12 +122,6 @@ export const useStepStore = defineStore('step', () => {
     form[key] = value
   }
 
-  const $continue = () => {
-    localStorage.setItem('stepForm', JSON.stringify(form))
-    step.value++
-    localStorage.setItem('step', JSON.stringify(step.value))
-  }
-
   const $prev = () => {
     step.value--
     localStorage.setItem('step', JSON.stringify(step.value))
@@ -94,6 +130,11 @@ export const useStepStore = defineStore('step', () => {
     step.value++
     localStorage.setItem('step', JSON.stringify(step.value))
   }
+  const $continue = () => {
+    $next()
+    localStorage.setItem('stepForm', JSON.stringify(form))
+  }
+
   const $getActiveKey = computed(() => {
     return activeKey[step.value - 1] || ''
   })
@@ -104,10 +145,10 @@ export const useStepStore = defineStore('step', () => {
     activeEmojis,
     emojis,
     form,
+    $getActiveKey,
     $changeForm,
     $continue,
     $prev,
     $next,
-    $getActiveKey,
   }
 })

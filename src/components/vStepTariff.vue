@@ -10,9 +10,7 @@ const stepStore = useStepStore()
 const tariffStore = useTariffStore()
 
 const texts: Translate | any = stepStore.activeStepText?.description || {}
-onMounted(async () => {
-  await tariffStore.$get()
-})
+onMounted(async () =>  await tariffStore.$get())
 interface Tariff {
   number:number
   price:string
