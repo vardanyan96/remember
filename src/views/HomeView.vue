@@ -11,8 +11,11 @@ import { computed, watch } from 'vue'
 import VLoginForm from '@/components/vLoginForm.vue'
 import VLoading from '@/components/vLoading.vue'
 import VStepTariff from '@/components/vStepTariff.vue'
+import VStepThanks from "@/components/vStepThanks.vue";
+import {useAuthStore} from "@/store/auth.ts";
 
 const stepStore = useStepStore()
+const auth = useAuthStore()
 const texts: Translate | any = stepStore.activeStepText?.description || {}
 
 const disabledBtn = computed(() => {
@@ -56,4 +59,5 @@ watch(
   <v-login-form v-if="stepStore.step === 12" />
   <v-loading v-if="stepStore.step === 13" />
   <v-step-tariff v-if="stepStore.step === 14" />
+  <v-step-thanks v-if="stepStore.step === 15" />
 </template>

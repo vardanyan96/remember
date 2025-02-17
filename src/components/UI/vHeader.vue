@@ -24,9 +24,9 @@ const stepStore = useStepStore()
   <div class="page-header">
     <div class="wrapper">
       <v-prev v-if="!noPrev" @click.prevent="stepStore.$prev" />
-      <v-skip v-if="isSkip" @click.prevent="stepStore.$next" :text="isSkip" />
+      <v-skip v-if="isSkip" @click.prevent="stepStore.$skip" :text="isSkip" />
 
-      <h1 class="page-title text-center max-w-[70%] m-auto pt-[50px]">{{ title }}</h1>
+      <h1 class="page-title text-center max-w-[85%] m-auto pt-[50px]">{{ title }}</h1>
     </div>
     <svg
       class="page-header__svg"

@@ -63,29 +63,28 @@ export const useStepStore = defineStore('step', () => {
         '🍒',
         '🎃',
         '🍁',
-        '🚶',
-        '🚶',
-        '🚶',
-        '🚶',
-        '🚶',
-        '🚶',
-        '🚶',
-        '🚶',
-        '🚶',
-        '🚶',
-        '🚶',
-        '🚶',
-        '🚶',
-        '🚶',
-        '🚶',
-        '🚶',
-        '🚶',
-        '🚶',
-        '🚶',
-        '🚶',
-        '🚶',
-        '🚶',
-        '🚶',
+        '🛍️',
+        '🍽️',
+        '🏥',
+        '🎮',
+        '📱',
+        '📅',
+        '🌍',
+        '💼',
+        '⚽',
+        '🏡',
+        '🐾',
+        '🌳',
+        '🏛️',
+        '🎶',
+        '😊',
+        '📖',
+        '🛫',
+        '🎬',
+        '🏫',
+        '📚',
+        '🚗',
+        '🌐',
       ],
     },
   ]
@@ -130,6 +129,10 @@ export const useStepStore = defineStore('step', () => {
     step.value++
     localStorage.setItem('step', JSON.stringify(step.value))
   }
+  const $skip = () => {
+    step.value = 11
+    localStorage.setItem('step', JSON.stringify(step.value))
+  }
   const $continue = () => {
     $next()
     localStorage.setItem('stepForm', JSON.stringify(form))
@@ -150,5 +153,6 @@ export const useStepStore = defineStore('step', () => {
     $continue,
     $prev,
     $next,
+    $skip
   }
 })

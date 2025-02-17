@@ -25,6 +25,8 @@ export interface Translate {
     price1_title?: string
     price2_title?: string
     price3_title?: string
+    receipt_explanation?: string
+    cta_download?: string
   }
   answers?: string[]
   description: object

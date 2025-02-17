@@ -1,6 +1,7 @@
 interface Url {
   readonly screen: string
   readonly user: string
+  readonly userProfile: string
   readonly login: string
   readonly subscribe: string
   readonly unsubscribe: string
@@ -11,6 +12,7 @@ interface Url {
 export const $url: Url = {
   screen:'/public/screen',
   user:'/public/user',
+  userProfile:'/user',
   login:'/public/login',
   subscribe: '/user/subscribe',
   unsubscribe: '/user/unsubscribe',

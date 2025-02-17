@@ -43,6 +43,7 @@ body {
     position: fixed;
     padding-bottom: 40px;
     z-index: 1;
+    width: 100%;
 
     .wrapper {
       position: relative;
@@ -659,6 +660,11 @@ text-transform: capitalize;
     text-decoration-skip-ink: none;
     text-transform: lowercase;
     color: #bbb;
+  }
+  &.w-full{
+    max-width: 320px;
+    letter-spacing: 0.01em;
+    color: #FFFFFFBF;
   }
 }
 
