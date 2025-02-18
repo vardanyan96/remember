@@ -19,11 +19,11 @@ const change = (code: string) => {
 onMounted(() => {
   const langCode = navigator.language.split('-')[0].toUpperCase()
   console.log(langCode)
-  change(langCode)
   if (texts && langCode){
     const findItem = texts.languages.findIndex((i:Lang) => i.image === langCode)
     if(findItem !== -1) {
         const element = document.querySelector(`.lang-${langCode}`)
+      change(langCode)
         if (element) {
           const rect = element.getBoundingClientRect()
           window.scrollTo({
