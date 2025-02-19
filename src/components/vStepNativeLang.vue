@@ -2,16 +2,15 @@
 import { useStepStore } from '@/store/step.ts'
 import VLangItem from '@/components/UI/vLangItem.vue'
 import VContinue from '@/components/UI/vContinue.vue'
-import type { Translate } from '@/helpers/interfaces.ts'
+import type { Translate, Lang } from '@/helpers/interfaces.ts'
 import VHeader from '@/components/UI/vHeader.vue'
 import _ from 'lodash'
 import { onMounted } from 'vue'
-import type{Lang} from "@/helpers/interfaces.ts";
 
 const stepStore = useStepStore()
 const texts: Translate | any = stepStore.activeStepText?.description || {}
 const countries = _.sortBy(
-  (texts.languages || []).filter(lang => lang.image !== stepStore.form.learnLang),
+  (texts.languages || []).filter((lang:Lang) => lang.image !== stepStore.form.learnLang),
   'country'
 )
 
