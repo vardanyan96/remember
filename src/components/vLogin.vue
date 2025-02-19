@@ -2,6 +2,7 @@
 import VPrev from '@/components/UI/vPrev.vue'
 import { useStepStore } from '@/store/step.ts'
 import type {Translate} from "@/helpers/interfaces.ts";
+import {$url} from "@/helpers/url.ts";
 
 const stepStore = useStepStore()
 const texts: Translate | any = stepStore.activeStepText?.description || {}
@@ -18,7 +19,7 @@ const handleAppleLogin = () => {
 </script>
 
 <template>
-  <div class="page-body page-body-full">
+  <div class="page-body page-body-full page-body-noscroll">
     <div class="wrapper page-body-wrapper">
       <div class="pt-[50px] page-body-wrapper-inner">
         <v-prev @click.prevent="stepStore.$prev" />
@@ -54,7 +55,7 @@ const handleAppleLogin = () => {
             </button>
             <span class="login-go pb-[25px]" @click.prevent="stepStore.$continue()"> {{ texts.buttons?.email }}</span>
             <span class="login-info pb-[17px]">
-              {{texts?.other_texts?.terms_title}} <b> {{ texts.buttons?.term }}</b>
+              {{texts?.other_texts?.terms_title}} <a :href="$url.term"><b> {{ texts.buttons?.term }}</b></a>
             </span>
           </div>
         </div>

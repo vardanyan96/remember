@@ -5,6 +5,7 @@ import type { Translate } from '@/helpers/interfaces.ts'
 import { useStepStore } from '@/store/step.ts'
 import { useTariffStore } from '@/store/tariffs.ts'
 import { onMounted } from 'vue'
+import {$url} from "@/helpers/url.ts";
 
 const stepStore = useStepStore()
 const tariffStore = useTariffStore()
@@ -97,7 +98,7 @@ const tariff = [
       <div class="info-page__bottom">
         <a href="#" class="link-restore">{{ texts.buttons.restore }}</a>
         <div class="info-page__bottom-text pb-[15px]">
-          {{ texts?.other_texts?.terms_title }} <a href="#">{{ texts.buttons.terms }}</a>
+          {{ texts?.other_texts?.terms_title }} <a :href="$url.term">{{ texts.buttons.terms }}</a>
         </div>
       </div>
     </div>

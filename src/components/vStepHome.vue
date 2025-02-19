@@ -16,7 +16,7 @@ const texts: Translate | any = stepStore.activeStepText?.description || {}
 </script>
 
 <template>
-  <div class="page-body">
+  <div class="page-body page-body-noscroll">
     <div class="wrapper page-body-wrapper">
       <div v-if="texts" class="pt-[50px] page-body-wrapper-inner">
         <v-prev @click.prevent="stepStore.$prev" />

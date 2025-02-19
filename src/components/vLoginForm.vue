@@ -4,6 +4,7 @@ import { useStepStore } from '@/store/step.ts'
 import type { Translate } from '@/helpers/interfaces.ts'
 import { computed, reactive } from 'vue'
 import { useAuthStore } from '@/store/auth.ts'
+import {$url} from "@/helpers/url.ts";
 
 const stepStore = useStepStore()
 const authStore = useAuthStore()
@@ -38,7 +39,7 @@ const send = () => authStore.createUser(form)
 </script>
 
 <template>
-  <div class="page-body page-body-full">
+  <div class="page-body page-body-full page-body-noscroll">
     <div class="wrapper page-body-wrapper">
       <div class="pt-[50px] page-body-wrapper-inner">
         <v-prev @click.prevent="stepStore.$prev" />
@@ -84,7 +85,7 @@ const send = () => authStore.createUser(form)
           </div>
           <div class="info-page__bottom">
             <span class="login-info pb-[17px]">
-              {{ texts?.other_texts?.terms_title }} <b> {{ texts.buttons?.terms }}</b>
+              {{ texts?.other_texts?.terms_title }} <a :href="$url.term"><b> {{ texts.buttons?.terms }}</b></a>
             </span>
           </div>
         </div>

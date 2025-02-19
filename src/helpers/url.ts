@@ -8,6 +8,7 @@ interface Url {
   readonly flow: string
   readonly tariff: string
   readonly tariffCurrent: string
+  readonly term: string
 }
 export const $url: Url = {
   screen:'/public/screen',
@@ -19,4 +20,5 @@ export const $url: Url = {
   flow: '/user/flow/save',
   tariff: '/user/tariff',
   tariffCurrent: '/user/tariff/current',
+  term: '/user/tariff/current',
 }
