@@ -20,5 +20,5 @@ export const $url: Url = {
   flow: '/user/flow/save',
   tariff: '/user/tariff',
   tariffCurrent: '/user/tariff/current',
-  term: '/user/tariff/current',
+  term: 'https://rmmbr.io/terms/',
 }
