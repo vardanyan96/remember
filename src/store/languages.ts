@@ -12,6 +12,7 @@ export const useLangStore = defineStore('lang', () => {
   const translate = ref<Translate[] | any>(null)
 
   const $get = async () => {
+    if (translate.value) return false
     const res = await axios.get(`${$url.screen}/${lang.value}`)
     translate.value = res.data
   }
