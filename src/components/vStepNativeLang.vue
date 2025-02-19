@@ -44,7 +44,6 @@ onMounted(() => {
   <v-header :title="texts.title" />
   <div class="page-body pt-[153px]">
     <div class="wrapper">
-      <pre>{{stepStore.form.nativeLang}}</pre>
       <v-lang-item
         :active-lang="stepStore.form.nativeLang"
         :list="countries"
