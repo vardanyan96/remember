@@ -22,7 +22,7 @@ interface UserAnswer {
 
 export const useAuthStore = defineStore('auth', () => {
   const user:any = ref(null)
-  const errors = ref<any>(null)
+  const errors = ref<any>(false)
   const loading = ref<boolean>(false)
   const token = ref<any | null>(null)
   const stepStore = useStepStore()
@@ -38,7 +38,7 @@ export const useAuthStore = defineStore('auth', () => {
     } catch (e) {
       console.log(e,'error')
       if (axios.isAxiosError(e)) {
-        errors.value = e.response?.data
+        errors.value = true
       } else {
         console.error('Неизвестная ошибка:', e)
       }

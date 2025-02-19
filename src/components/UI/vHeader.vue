@@ -9,6 +9,10 @@ const props = defineProps({
     type: String,
     required: true,
   },
+  titleClass: {
+    type: String,
+    default:'max-w-[85%]'
+  },
   noPrev: {
     type: Boolean,
     default: false,
@@ -26,7 +30,7 @@ const stepStore = useStepStore()
       <v-prev v-if="!noPrev" @click.prevent="stepStore.$prev" />
       <v-skip v-if="isSkip" @click.prevent="stepStore.$skip" :text="isSkip" />
 
-      <h1 class="page-title text-center max-w-[85%] m-auto pt-[50px]">{{ title }}</h1>
+      <h1 class="page-title text-center m-auto pt-[50px]" :class="titleClass">{{ title }}</h1>
     </div>
     <svg
       class="page-header__svg"

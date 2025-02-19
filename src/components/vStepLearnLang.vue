@@ -22,7 +22,7 @@ const learnLang = computed(() => {
 </script>
 
 <template>
-  <v-header :title="texts.title" no-prev />
+  <v-header :title="texts.title" title-class="max-w-[75%]" no-prev />
   <div class="page-body pt-[153px]">
     <div class="wrapper">
       <v-lang-item

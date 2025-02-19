@@ -111,7 +111,7 @@ export const useStepStore = defineStore('step', () => {
   })
 
   const activeStepText = computed(() => {
-    return _.find(langStore.translate, { id: step.value })
+    return langStore.translate[step.value - 1]
   })
   const activeEmojis = computed(() => {
     return _.find(emojis, { id: step.value })

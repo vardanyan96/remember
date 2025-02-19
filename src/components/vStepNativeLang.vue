@@ -23,7 +23,6 @@ onMounted(() => {
   console.log(langCode)
   if (texts && langCode){
     const findItem = countries.findIndex((i:Lang) => i.image === langCode)
-    console.log(findItem)
     if(findItem !== -1) {
         const element = document.querySelector(`.lang-${langCode}`)
       change(langCode)

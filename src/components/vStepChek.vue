@@ -1,12 +1,13 @@
 <script lang="ts" setup>
 import { useStepStore } from '@/store/step.ts'
 import VContinue from '@/components/UI/vContinue.vue'
-import type { Translate } from '@/helpers/interfaces.ts'
+import type {Lang, Translate} from '@/helpers/interfaces.ts'
 import VPrev from '@/components/UI/vPrev.vue'
 import VCheckboxItem from '@/components/UI/vCheckboxItem.vue'
 import VCheckboxItemMultiple from '@/components/UI/vCheckboxItemMultiple.vue'
 import VSkip from '@/components/UI/vSkip.vue'
 import VHeader from '@/components/UI/vHeader.vue'
+import {useLangStore} from "@/store/languages.ts";
 
 const props = defineProps({
   image: {
@@ -28,11 +29,18 @@ const props = defineProps({
 })
 
 const stepStore = useStepStore()
+const langStore = useLangStore()
 const texts: Translate | any = stepStore.activeStepText?.description || {}
+
+const changeTitle = (title:string) =>{
+  const item = langStore.translate[0].description.languages.find((i:Lang) =>  i.image === stepStore.form.learnLang)
+  const lang = item.country
+  return  title.replace(/%lang%/, lang);
+}
 </script>
 
 <template>
-  <v-header v-if="withoutImage" :title="texts.title" :is-skip="texts.buttons.skip" />
+  <v-header v-if="withoutImage" :title="changeTitle(texts.title)" title-class="max-w-[65%]" :is-skip="texts.buttons.skip" />
 
   <div class="page-body" :class="{ 'pt-[90px]': withoutImage }">
     <div class="wrapper page-body-wrapper">

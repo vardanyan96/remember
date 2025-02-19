@@ -55,7 +55,7 @@ const send = () => authStore.createUser(form)
                   v-model="form.email"
                   type="email"
                   class="login-form-input"
-                  :class="{'error': authStore.errors && authStore.errors?.email}"
+                  :class="{'error': authStore.errors}"
                   placeholder="E-mail"
                 />
               </div>
@@ -69,8 +69,8 @@ const send = () => authStore.createUser(form)
                 />
               </div>
               <template v-if="authStore.errors">
-                <span v-for="(item, index) in authStore.errors" :key="index" class="login-form-error">
-                  {{ item }}
+                <span class="login-form-error">
+                  Email you entered is already in use
                 </span>
               </template>
               <button

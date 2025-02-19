@@ -7,16 +7,18 @@ import VStepChek from '@/components/vStepChek.vue'
 import VContinue from '@/components/UI/vContinue.vue'
 import VLogin from '@/components/vLogin.vue'
 import type { Translate } from '@/helpers/interfaces.ts'
-import { computed, watch } from 'vue'
+import {computed, onMounted, ref, watch} from 'vue'
 import VLoginForm from '@/components/vLoginForm.vue'
 import VLoading from '@/components/vLoading.vue'
 import VStepTariff from '@/components/vStepTariff.vue'
 import VStepThanks from "@/components/vStepThanks.vue";
 import {useAuthStore} from "@/store/auth.ts";
+import {useLangStore} from "@/store/languages.ts";
 
+const langStore = useLangStore()
 const stepStore = useStepStore()
 const auth = useAuthStore()
-const texts: Translate | any = stepStore.activeStepText?.description || {}
+const texts: Translate | any = ref(null)
 
 const disabledBtn = computed(() => {
   if (stepStore.$getActiveKey && stepStore.$getActiveKey.length > 0) {
@@ -26,17 +28,23 @@ const disabledBtn = computed(() => {
 })
 watch(
   () => stepStore.step,
-  () => {
-    // Ожидаем обновления DOM перед прокруткой
+  (val) => {
     const element = document.querySelector('.step-container')
-    if (element) element.scrollIntoView({ behavior: 'smooth' })
+    if (element) element.scrollIntoView()
+    if(langStore?.translate) texts.value = langStore.translate[val - 1].description ?? null
+
   },
   { deep: true },
 )
+onMounted(async () =>{
+  await langStore.$get()
+  texts.value = langStore.translate[stepStore.step - 1].description ?? null
+})
 </script>
 
 <template>
-  <div class="step-container">
+  <template v-if="texts">
+    <div  class="step-container">
     <v-step-learn-lang v-if="stepStore.step === 1" />
     <v-step-native-lang v-if="stepStore.step === 2" />
     <v-step-home v-if="stepStore.step === 3" image="/img/hi.svg" />
@@ -48,16 +56,18 @@ watch(
     <v-step-chek v-if="stepStore.step === 9" without-image image-key="level" />
     <v-step-chek v-if="stepStore.step === 10" multiple without-image image-key="themes" />
     <v-continue
-      :text="texts.buttons.continue"
+      :text="texts?.buttons?.continue"
       @continue="stepStore.$continue()"
       :disabled-btn="disabledBtn"
       v-if="stepStore.step <= 10"
     />
   </div>
 
-  <v-login v-if="stepStore.step === 11" />
+  <v-login v-if="stepStore.step === 11"  />
   <v-login-form v-if="stepStore.step === 12" />
   <v-loading v-if="stepStore.step === 13" />
   <v-step-tariff v-if="stepStore.step === 14" />
   <v-step-thanks v-if="stepStore.step === 15" />
+  </template>
+
 </template>

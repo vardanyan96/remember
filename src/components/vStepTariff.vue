@@ -4,14 +4,15 @@ import { Carousel, Slide, Pagination } from 'vue3-carousel'
 import type { Translate } from '@/helpers/interfaces.ts'
 import { useStepStore } from '@/store/step.ts'
 import { useTariffStore } from '@/store/tariffs.ts'
-import { onMounted } from 'vue'
-import {$url} from "@/helpers/url.ts";
+import { computed, onMounted } from 'vue'
+import { $url } from '@/helpers/url.ts'
 
 const stepStore = useStepStore()
 const tariffStore = useTariffStore()
 
 const texts: Translate | any = stepStore.activeStepText?.description || {}
 onMounted(async () => await tariffStore.$get())
+
 interface Tariff {
   number: number
   price: string
@@ -96,7 +97,7 @@ const tariff = [
         </div>
       </div>
       <div class="info-page__bottom">
-        <a href="#" class="link-restore">{{ texts.buttons.restore }}</a>
+        <!--        <a href="#" class="link-restore">{{ texts.buttons.restore }}</a>-->
         <div class="info-page__bottom-text pb-[15px]">
           {{ texts?.other_texts?.terms_title }} <a :href="$url.term">{{ texts.buttons.terms }}</a>
         </div>
