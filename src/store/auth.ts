@@ -28,13 +28,15 @@ export const useAuthStore = defineStore('auth', () => {
   const stepStore = useStepStore()
 
   const createUser = async (user: UserForm): Promise<void> => {
-    stepStore.$continue()
     try {
       loading.value = true
       errors.value = null
       const res = await axios.post($url.user, user)
       await login(user)
+      stepStore.$continue()
+      console.log(res,'success')
     } catch (e) {
+      console.log(e,'error')
       if (axios.isAxiosError(e)) {
         errors.value = e.response?.data
       } else {

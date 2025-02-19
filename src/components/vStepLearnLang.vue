@@ -12,8 +12,9 @@ const texts: Translate | any = stepStore.activeStepText?.description || {}
 const mainCodes = ['US', 'ES', 'DE']
 
 const learnLang = computed(() => {
+  const sortedLanguages = _.sortBy(texts.languages || [], 'country')
   const [main, sea] = _.partition(
-    texts.languages,
+    sortedLanguages,
     (lang) => lang && lang.image && mainCodes.includes(lang.image),
   )
   return { main, sea }

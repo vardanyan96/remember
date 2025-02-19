@@ -10,7 +10,10 @@ import type{Lang} from "@/helpers/interfaces.ts";
 
 const stepStore = useStepStore()
 const texts: Translate | any = stepStore.activeStepText?.description || {}
-const countries = _.sortBy(texts.languages || [], 'country')
+const countries = _.sortBy(
+  (texts.languages || []).filter(lang => lang.image !== stepStore.form.learnLang),
+  'country'
+)
 
 const change = (code: string) => {
   stepStore.$changeForm('nativeLang', code)
@@ -20,7 +23,8 @@ onMounted(() => {
   const langCode = navigator.language.split('-')[0].toUpperCase()
   console.log(langCode)
   if (texts && langCode){
-    const findItem = texts.languages.findIndex((i:Lang) => i.image === langCode)
+    const findItem = countries.findIndex((i:Lang) => i.image === langCode)
+    console.log(findItem)
     if(findItem !== -1) {
         const element = document.querySelector(`.lang-${langCode}`)
       change(langCode)
@@ -41,6 +45,7 @@ onMounted(() => {
   <v-header :title="texts.title" />
   <div class="page-body pt-[153px]">
     <div class="wrapper">
+      <pre>{{stepStore.form.nativeLang}}</pre>
       <v-lang-item
         :active-lang="stepStore.form.nativeLang"
         :list="countries"
