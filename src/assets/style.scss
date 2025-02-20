@@ -383,7 +383,7 @@ text-transform: capitalize;
     margin-bottom: 10px;
     border: 1px solid rgba(255, 255, 255, 0.25);
     border-radius: 15px;
-    padding: 12px 20px;
+
     font-family: var(--font-family);
     font-weight: 700;
     font-size: 17px;
@@ -418,6 +418,7 @@ text-transform: capitalize;
       justify-content: space-between;
       gap: 12px;
       width: 100%;
+      padding: 12px 20px;
     }
 
     &-text {
