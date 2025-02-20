@@ -9,8 +9,8 @@ const stepStore = useStepStore()
 const texts: Translate | any = stepStore.activeStepText?.description || {}
 onMounted(async () => {
   setTimeout(() =>{
-    stepStore.$continue()
-  },1000)
+    // stepStore.$continue()
+  },3000)
 })
 </script>
 
@@ -18,11 +18,11 @@ onMounted(async () => {
   <div class="flex flex-col items-center justify-center min-h-screen bg-blue-500">
     <v-circle-progress
       :progress="100"
-      :size="100"
+      :size="110"
       :strokeWidth="8"
       strokeColor="#60db76"
       trackColor="#ffffff1a"
     />
-    <p class="text-white mt-4 text-lg progress-text">{{ texts?.subtitle }}</p>
+    <p class="mt-[20px] progress-text">{{ texts?.subtitle }}</p>
   </div>
 </template>

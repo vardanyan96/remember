@@ -10,7 +10,8 @@
 }
 
 body {
-  @apply bg-primary
+  @apply bg-primary;
+  font-family: var(--font-family);
   //background: var(--bg-primary);
 }
 
@@ -775,4 +776,22 @@ text-transform: capitalize;
 }
 .page-body-noscroll{
   overflow: hidden;
+}
+.progress-number{
+  font-family: var(--font-family);
+  font-weight: 700;
+  font-size: 17px;
+  line-height: 129%;
+  text-align: center;
+  color: #fff;
+}
+
+.progress-text{
+  font-family: var(--font-family);
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 133%;
+  letter-spacing: 0.02em;
+  text-align: center;
+  color: #fff;
 }

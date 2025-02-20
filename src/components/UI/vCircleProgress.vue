@@ -18,41 +18,52 @@ const strokeDashoffset = computed(() =>
   circumference.value - (progressValue.value / 100) * circumference.value
 );
 
-// Анимация при монтировании
-onMounted(() => {
-  let step = 0;
-  const interval = setInterval(() => {
-    if (step >= props.progress) {
-      clearInterval(interval);
-    } else {
-      step += 1;
-      progressValue.value = step;
+
+const animateProgress = (start: number, end: number, duration: number) => {
+  let startTime: number | null = null;
+
+  const step = (timestamp: number) => {
+    if (!startTime) startTime = timestamp;
+    const elapsed = timestamp - startTime;
+    const progress = Math.min(elapsed / duration, 1); // 0 - 1
+
+    // Используем `ease-out` (ускорение в начале, замедление в конце)
+    progressValue.value = start + (end - start) * (1 - Math.pow(1 - progress, 3));
+
+    if (elapsed < duration) {
+      requestAnimationFrame(step);
     }
-  }, 10); // Скорость анимации
+  };
+
+  requestAnimationFrame(step);
+};
+
+onMounted(() => {
+  animateProgress(0, props.progress, 1500); // Длительность 1.5 секунды
 });
 </script>
 
 <template>
   <div class="relative flex items-center justify-center" :style="{ width: `${size}px`, height: `${size}px` }">
-    <svg :width="size" :height="size" viewBox="0 0 100 100" class="rotate-[-90deg]">
+    <svg :width="size" :height="size" :viewBox="`0 0 ${size} ${size}`" class="rotate-[-90deg]">
       <!-- Фоновый круг -->
-      <circle cx="50" cy="50" :r="radius" :stroke="trackColor || 'lightgray'" :stroke-width="strokeWidth" fill="none" />
+      <circle :cx="size / 2" :cy="size / 2" :r="radius" :stroke="trackColor || 'lightgray'" :stroke-width="strokeWidth" fill="none" />
 
       <!-- Круг прогресса -->
       <circle
-        cx="50"
-        cy="50"
+        :cx="size / 2"
+        :cy="size / 2"
         :r="radius"
         :stroke="strokeColor || 'limegreen'"
         :stroke-width="strokeWidth"
         fill="none"
         stroke-linecap="round"
-        stroke-dasharray="288.2"
+        stroke-dasharray="317"
         :stroke-dashoffset="strokeDashoffset"
       />
     </svg>
 
     <!-- Текст в центре -->
-    <div class="absolute text-white text-xl progress-number">{{ progressValue }}%</div>
+    <div class="absolute text-white text-xl progress-number">{{ Math.round(progressValue) }}%</div>
   </div>
 </template>
