@@ -1,13 +1,25 @@
 <script setup lang="ts">
 import { ref, computed, onMounted } from "vue";
 
-const props = defineProps<{
-  progress: number; // Значение в процентах (0 - 100)
-  size?: number; // Размер круга (по умолчанию 100px)
-  strokeWidth?: number; // Толщина линии (по умолчанию 8px)
-  strokeColor?: string; // Цвет прогресса (по умолчанию "limegreen")
-  trackColor?: string; // Цвет фона (по умолчанию "lightgray")
-}>();
+const props = defineProps({
+  progress:{
+    type:Number,
+    default: 0
+  },
+  size:{
+    type:Number,
+    default:100
+  },
+  strokeWidth:{
+    type:Number,
+  },
+  strokeColor:{
+    type:String,
+  },
+  trackColor:{
+    type:String,
+  }
+});
 
 const progressValue = ref(0); // Анимированный процент
 
@@ -39,7 +51,7 @@ const animateProgress = (start: number, end: number, duration: number) => {
 };
 
 onMounted(() => {
-  animateProgress(0, props.progress, 1500); // Длительность 1.5 секунды
+  animateProgress(0, props.progress || 100, 1500); // Длительность 1.5 секунды
 });
 </script>
 
